@@ -1,0 +1,6 @@
+div {
+    transition : width 1s ;
+    transition: width 1s ;
+    visibility: hidden;
+    visibility: visible;
+}
