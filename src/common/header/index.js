@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { actionCreators } from './store'
 
 import { 
@@ -37,12 +38,15 @@ class Header extends Component {
 
   render() {
     const {list, handleInputFocus, handlerSwitch } = this.props;
-    // console.log(list);
     return (
       <HeaderWrapper>
-      <Logo />
+      <Link to='/'>
+        <Logo />
+      </Link>
       <Nav>
-        <NavItem className='left active'>首页</NavItem>
+        <Link to='/'>
+          <NavItem className='left active'>首页</NavItem>
+        </Link>
         <NavItem className='left'>下载App</NavItem>
         <NavItem className='right'>登录</NavItem>
         <NavItem className='right'>

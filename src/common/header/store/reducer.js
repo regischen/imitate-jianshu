@@ -1,5 +1,4 @@
 import { constants } from '.'
-import { SEARCH_FOCUS } from './actionTypes';
 
 const defaultState = {
   list : [],

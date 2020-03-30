@@ -3,4 +3,5 @@ div {
     transition: width 1s ;
     visibility: hidden;
     visibility: visible;
+    box-sizing: border-box;
 }
