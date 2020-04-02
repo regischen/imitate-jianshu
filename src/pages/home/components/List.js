@@ -12,14 +12,15 @@ class List extends Component {
       <Fragment>
       {
         list.map((item,index) => {
+          let to = '/detail/' + item.id;
           return (
             <ListItem key={index}>
               <div className='left'>
-                <h2><Link className='headingLink' to='/detail'>{item.heading}</Link></h2>
+                <h2><Link className='headingLink' to={to}>{item.heading}</Link></h2>
                 <p>{item.paragraph}</p>
               </div>
               <div className='right'>
-                <Link to="/detail">
+                <Link to={to}>
                   <img src={item.imgUrl} alt=''></img>
                 </Link>
               </div>

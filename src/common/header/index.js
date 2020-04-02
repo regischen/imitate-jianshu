@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { actionCreators } from './store'
+import { actionCreators as loginActionCreators } from '../../pages/login/store'
 
 import { 
     HeaderWrapper, 
@@ -37,7 +38,7 @@ class Header extends Component {
   }
 
   render() {
-    const {list, handleInputFocus, handlerSwitch } = this.props;
+    const { loginState, list, handleInputFocus, handlerSwitch ,logout} = this.props;
     return (
       <HeaderWrapper>
       <Link to='/'>
@@ -48,7 +49,11 @@ class Header extends Component {
           <NavItem className='left active'>首页</NavItem>
         </Link>
         <NavItem className='left'>下载App</NavItem>
-        <NavItem className='right'>登录</NavItem>
+        {
+          loginState ? <Link to='/'><NavItem onClick={logout} className='right'>退出</NavItem></Link>
+          : <Link to='/login'><NavItem className='right'>登录</NavItem></Link>
+        }
+        
         <NavItem className='right'>
           <span className="iconfont">&#xe636;</span>
         </NavItem>
@@ -69,10 +74,12 @@ class Header extends Component {
         </SearchWrapper>
       </Nav>
       <Addition>
-        <Button className='write'>
-          <span className="iconfont">&#xe6e5;</span>
-          写文章
-        </Button>
+        <Link to='/write'>
+          <Button className='write'>
+            <span className="iconfont">&#xe6e5;</span>
+            写文章
+          </Button>
+        </Link>
         <Button className='res'>注册</Button>
       </Addition>
     </HeaderWrapper>
@@ -86,8 +93,9 @@ const mapStateToProps = (state) => {
       list : state.header.list,
       page : state.header.page,
       totalPage : state.header.totalPage,
+      loginState : state.login.login,
     }
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -100,9 +108,11 @@ const mapDispatchToProps = (dispatch) => {
       },
       handlerSwitch() {
         dispatch(actionCreators.switchContent())
+      },
+      logout() {
+        dispatch(loginActionCreators.logout())
       }
     }
-}
+};
 
-// export default Header;
 export default connect(mapStateToProps,mapDispatchToProps)(Header);

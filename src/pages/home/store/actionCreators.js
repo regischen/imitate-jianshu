@@ -27,7 +27,7 @@ export const loadData = () => {
 
 export const getMoreList = () => {
   return (dispatch) => {
-    axios.get('api/homeList.json').then((res) => {
+    axios.get('/api/homeList.json').then((res) => {
       dispatch(addHomeData(res.data.data));
     }).catch(() => {
       console.log('home add axios error');
